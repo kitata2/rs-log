@@ -2,8 +2,8 @@ import csv
 import requests
 
 def main():
-    telegram_apikey = None if len(sys.argv) <= 1 else sys.argv[1]
-    chat_id         = None if len(sys.argv) <= 2 else sys.argv[2]
+    telegram_apikey = sys.argv[1]
+    chat_id         = sys.argv[2]
     
     # Read the CSV file
     with open('output/rs_stocks.csv', 'r') as file:
