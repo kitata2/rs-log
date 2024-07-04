@@ -23,7 +23,8 @@ def main():
            
     
     print(result_list)
-    result_list += ','.join(result_list)
+    result_list.sort()
+    result_list = ','.join(result_list)
     message = "Stocks with RS rating > 80\n\n"
     message += result_list
 
