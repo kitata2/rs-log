@@ -3,6 +3,7 @@ import csv
 # Read the CSV file
 with open('output/rs_stocks.csv', 'r') as file:
     reader = csv.reader(file)
+    next(reader)
     data = list(reader)
 
 # Filter the rows where the first three columns are all > 80
