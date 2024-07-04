@@ -9,5 +9,7 @@ with open('rs_stocks.csv', 'r') as file:
 filtered_data = [row for row in data if all(float(col) > 80 for col in row[6:9])]
 
 # Print the filtered rows
+result_list = []
 for row in filtered_data:
-    row[
+    result_list.append(row['ticker'])
+    
