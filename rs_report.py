@@ -19,8 +19,7 @@ def main():
     for row in filtered_data:
         print(row)
         result_list.append(row[1])
-        
-    
+           
     message = "Stocks with RS rating > 80\n\n"
     message += ','.join(result_list)
 
