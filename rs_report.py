@@ -1,4 +1,5 @@
 import csv
+import requests
 
 # Read the CSV file
 with open('output/rs_stocks.csv', 'r') as file:
@@ -15,3 +16,12 @@ for row in filtered_data:
     print(row)
     result_list.append(row[1])
     
+telegram_apikey = ${{ secrets.TELEGRAM_TOEKN }}
+chat_id = ${{ secrets.TELEGRAM_CHAT_ID }}
+
+message = "Stocks with RS rating > 80\n\n"
+message += ','.join(result_list)
+
+message = urllib.parse.quote(message)
+url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+requests.get(url)
