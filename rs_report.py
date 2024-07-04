@@ -21,8 +21,10 @@ def main():
         print(row)
         result_list.append(row[1])
            
+    
+    result_list += ','.join(result_list)
     message = "Stocks with RS rating > 80\n\n"
-    message += ','.join(result_list)
+    message += result_list
 
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
