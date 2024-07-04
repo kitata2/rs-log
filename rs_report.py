@@ -1,7 +1,7 @@
 import csv
 
 # Read the CSV file
-with open('rs_stocks.csv', 'r') as file:
+with open('output/rs_stocks.csv', 'r') as file:
     reader = csv.reader(file)
     data = list(reader)
 
