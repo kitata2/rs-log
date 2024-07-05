@@ -45,7 +45,7 @@ def main():
 
     industry_result_list = []
     for row in industry_filtered_data:
-        industry_result_list.append(row)
+        industry_result_list.append(f"{row[1]}-{row[2]} {row[4:7]} {row[8]}") # Sample 1,Copper,Basic Materials,119.33,99,99,97,46,"HBM,TGB,SCCO,ERO,FCX"
            
     
     print(industry_result_list)
