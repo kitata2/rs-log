@@ -50,7 +50,7 @@ def main():
     
     print(industry_result_list)
     
-    industry_results = '\n'.join(industry_result_list)
+    industry_results = '\n\n'.join(industry_result_list)
     industry_message = "Stocks with Industry RS rating > 80\n\n"
     industry_message += industry_results
 
