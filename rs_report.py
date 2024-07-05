@@ -51,7 +51,7 @@ def main():
     # Print the filtered rows
     industry_result_list = []
     for row in industry_filtered_data:
-        industry_result_list.append(f"{row[1]}-{row[2]} {row[4:7]}")
+        industry_result_list.append(f"{row[1]}-{row[2]} {row[4:7]}\n")
            
     
     print(industry_result_list)
