@@ -25,7 +25,6 @@ def main():
     # Print the filtered rows
     result_list = []
     for row in filtered_data:
-        print(row)
         result_list.append(row[1])
            
     result_list.sort()
