@@ -2,7 +2,6 @@ import csv
 import requests
 import sys
 import urllib.parse
-import argparse 
 
 def main():
     telegram_apikey = sys.argv[1]
