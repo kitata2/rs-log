@@ -4,7 +4,7 @@ import sys
 import urllib.parse
 
 def main():
-    print(sys.arg)
+    print(sys.argv)
     telegram_apikey = sys.argv[1]
     chat_id         = sys.argv[2]
 
