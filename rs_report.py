@@ -4,8 +4,8 @@ import sys
 import urllib.parse
 
 def main():
-    telegram_apikey = sys.argv[0]
-    chat_id         = sys.argv[1]
+    telegram_apikey = sys.argv[1]
+    chat_id         = sys.argv[2]
 
     # parser = argparse.ArgumentParser()
     # parser.add_argument('-token', type=str)
