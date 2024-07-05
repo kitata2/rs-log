@@ -30,9 +30,9 @@ def main():
     result_list.sort()
     print(result_list)
     
-    # results = ','.join(result_list)
+    results = ','.join(result_list)
     message = "Stocks with RS rating > 80\n\n"
-    # message = result_list
+    message += results
 
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
