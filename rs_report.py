@@ -2,10 +2,16 @@ import csv
 import requests
 import sys
 import urllib.parse
+import argparse 
 
 def main():
     telegram_apikey = sys.argv[1]
     chat_id         = sys.argv[2]
+
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('-token', type=str)
+    # parser.add_argument('-chatid', type=str)
+    # args = parser.parse_args()
     
     # Read the CSV file
     with open('output/rs_stocks.csv', 'r') as file:
