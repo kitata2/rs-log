@@ -46,13 +46,13 @@ def main():
         data2 = list(reader2)
 
     # Filter the rows where the first three columns are all > 80
-    industry_filtered_data = [row for row in data2 if all(float(col) > 80 for col in row[4:7])]
+    industry_filtered_data = [row for row in data2 if all(float(col) > 80 for col in row[4:8])]
 
     # Print the filtered rows
     industry_result_list = []
     for row in industry_filtered_data:
         print(row[4:8])
-        industry_result_list.append(row[1]-row[2])
+        industry_result_list.append(f"{row[1]}-{row[2]}")
            
     
     print(industry_result_list)
