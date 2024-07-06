@@ -51,11 +51,11 @@ def main():
     print(industry_result_list)
     
     industry_results = '\n\n'.join(industry_result_list)
-    industry_message = "<b>Stocks with Industry RS rating > 80</b><p>"
+    industry_message = "Stocks with Industry RS rating > 80\n\n"
     industry_message += industry_results
 
     industry_message = urllib.parse.quote(industry_message)
-    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={industry_message}&parse_mode=html"
+    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={industry_message}"
     requests.get(url)
 
 
