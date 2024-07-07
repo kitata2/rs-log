@@ -28,12 +28,15 @@ def main():
 
     filtered_by_over_10b_list = []
     for x in result_list:
-        stock = yf.Ticker(x)
-        # Get the market capitalization
-        market_cap = stock.info.get('marketCap', 0)
-        # Check if the market cap is over 10 billion (10^10)
-        if market_cap > 10_000_000_000:
-            filtered_by_over_10b_list.append(x)
+        try:
+            stock = yf.Ticker(x)
+            # Get the market capitalization
+            market_cap = stock.info.get('marketCap', 0)
+            # Check if the market cap is over 10 billion (10^10)
+            if market_cap > 10_000_000_000:
+                filtered_by_over_10b_list.append(x)
+        except:
+            pass
 
 
     results = ','.join(result_list)
