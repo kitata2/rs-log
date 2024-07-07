@@ -2,6 +2,7 @@ import csv
 import requests
 import sys
 import urllib.parse
+import yfinance as yf
 
 def main():
     
@@ -24,10 +25,23 @@ def main():
            
     result_list.sort()
     print(result_list)
-    
+
+    filtered_by_over_10b_list = []
+    for x in result_list:
+        stock = yf.Ticker(x)
+        # Get the market capitalization
+        market_cap = stock.info.get('marketCap', 0)
+        # Check if the market cap is over 10 billion (10^10)
+        if market_cap > 10_000_000_000:
+            filtered_by_over_10b_list.append(x)
+
+
     results = ','.join(result_list)
     message = "Stocks with RS rating > 80 in past months\n\n"
     message += results
+    message += f"\n\nFiltered over 10 billion:\n\n"
+    stock_list2 = ', '.join(filtered_by_over_10b_list)
+    message += stock_list2
 
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
