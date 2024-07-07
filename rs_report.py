@@ -37,6 +37,7 @@ def main():
                 filtered_by_over_10b_list.append(x)
         except:
             pass
+    print(filtered_by_over_10b_list)
 
 
     results = ','.join(result_list)
