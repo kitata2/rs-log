@@ -32,8 +32,8 @@ def main():
             stock = yf.Ticker(x)
             # Get the market capitalization
             market_cap = stock.info.get('marketCap', 0)
-            # Check if the market cap is over 5 billion (10^10)
-            if market_cap > 5_000_000_000:
+            # Check if the market cap is over 1 billion (10^10)
+            if market_cap > 1000000000:
                 filtered_by_over_10b_list.append(x)
         except:
             pass
