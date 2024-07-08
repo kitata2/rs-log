@@ -4,11 +4,14 @@ import sys
 import urllib.parse
 import yfinance as yf
 
+TWO_BILLION = 2000000000
+TEN_BILLION = 10000000000
+
 def main():
     
     telegram_apikey = sys.argv[1]
     chat_id         = sys.argv[2]
-
+    
     # Read stock RS file
     with open('output/rs_stocks.csv', 'r') as file:
         reader = csv.reader(file)
@@ -17,41 +20,44 @@ def main():
 
     # Filter the rows where the first three columns are all > 80
     filtered_data = [row for row in data if all(float(col) > 80 for col in row[6:9])]
-
     result_list = []
-    industry_sector_dict = {}
+    industry_sector_dict = {}    
     for row in filtered_data:
         result_list.append(row[1])
         try:
             industry_sector_dict[f"{row[3]}-{row[2]}"]
             industry_sector_dict[f"{row[3]}-{row[2]}"] += 1
         except KeyError:
-            industry_sector_dict[f"{row[3]}-{row[2]}"] = 1            
-           
+            industry_sector_dict[f"{row[3]}-{row[2]}"] = 1                
     result_list.sort()
-    print(result_list)
-    sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True)
-    print(dict(sorted_industry_sector_dict))
+
     
+    filtered_by_mid_cap_list = []
     filtered_by_over_10b_list = []
     for x in result_list:
         try:
             stock = yf.Ticker(x)
             # Get the market capitalization
             market_cap = stock.info.get('marketCap', 0)
-            # Check if the market cap is over 1 billion (10^10)
-            if market_cap > 1000000000:
+            # Check the market cap
+            if (market_cap >= TEN_BILLION): # Large-cap
                 filtered_by_over_10b_list.append(x)
+            elif (market_cap > TWO_BILLION): # Mid-cap
+                    filtered_by_mid_cap_list.append(x)
         except:
-            pass
+            pass   
+    
     print(filtered_by_over_10b_list)
     
-    results = ','.join(result_list)
-    message = "Stocks RS rating > 80 in past months\n\n"
-    message += results
-    message = urllib.parse.quote(message)
-    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
-    res = requests.get(url)
+    sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True) #List of tuples
+    print(dict(sorted_industry_sector_dict))
+    
+    # results = ','.join(result_list)
+    # message = "Stocks RS rating > 80 in past months\n\n"
+    # message += results
+    # message = urllib.parse.quote(message)
+    # url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+    # res = requests.get(url)
 
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80 over 10 billion\n\n"
@@ -61,8 +67,8 @@ def main():
     res = requests.get(url)
     
     message = "Industry-Sectors with most RS rating > 80\n\n"
-    result = ', '.join(f'({x}, {y})' for x, y in sorted_industry_sector_dict)
-    message += result
+    res = '\n'.join(str(tup) for tup in sorted_industry_sector_dict)
+    message += res
     
     message = urllib.parse.quote(message)
     print(message)
