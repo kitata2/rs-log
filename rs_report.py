@@ -24,14 +24,21 @@ def main():
     result_list = []
     for row in filtered_data:
         result_list.append(row[1])
-        if sector_industry_list.get(f"{row[2]}-{row[3]}") is not None:
+        try:
+            sector_industry_list[f"{row[2]}-{row[3]}"]
             sector_industry_list[f"{row[2]}-{row[3]}"] += 1
-        else:
+        except KeyError:
             sector_industry_list[f"{row[2]}-{row[3]}"] = 1
+            
+        # if sector_industry_list.get(f"{row[2]}-{row[3]}") is not None:
+        #     sector_industry_list[f"{row[2]}-{row[3]}"] += 1
+        # else:
+        #     sector_industry_list[f"{row[2]}-{row[3]}"] = 1
            
     result_list.sort()
     print(result_list)
-    print(dict(sector_industry_list))
+    sorted_sector_industry_list = sorted(sector_industry_list.items(), key=lambda x: x[1], reverse=True)
+    print(dict(sort_sector_industry_list))
 
     filtered_by_over_10b_list = []
     for x in result_list:
