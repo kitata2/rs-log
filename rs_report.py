@@ -50,14 +50,14 @@ def main():
     message = "Stocks RS rating > 80 in past months\n\n"
     message += results
     message += "\n\n"
-    message += str(sorted_industry_sector_list)
+    message += str(sorted_industry_sector_dict)
         
     
     # message += f"\n\nFiltered over 10 billion:\n\n"
     # stock_list2 = ', '.join(filtered_by_over_10b_list)
     # # message += stock_list2
     # message += "\n\n"
-    # # message2 = str(sorted_industry_sector_list)
+    # # message2 = str(sorted_industry_sector_dict)
     
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
