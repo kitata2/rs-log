@@ -32,8 +32,6 @@ def main():
             stock = yf.Ticker(x)
             # Get the market capitalization
             market_cap = stock.info.get('marketCap', 0)
-            print(x)
-            print(market_cap)
             # Check if the market cap is over 1 billion (10^10)
             if market_cap > 1000000000:
                 filtered_by_over_10b_list.append(x)
@@ -48,6 +46,7 @@ def main():
     message += f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
+    print(message)
 
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
@@ -60,7 +59,7 @@ def main():
         next(reader2)
         data2 = list(reader2)
 
-    # Filter the rows where the first three columns are all > 80
+    ### Filter the rows where the first three columns are all > 80
     industry_filtered_data = [row for row in data2 if all(float(col) >= 90 for col in row[4:7])] # Percentile, 1-month and 3-month top
 
     industry_result_list = []
@@ -71,7 +70,7 @@ def main():
     print(industry_result_list)
     
     industry_results = '\n\n'.join(industry_result_list)
-    industry_message = "Stocks with Industry RS rating > 80\n\n"
+    industry_message = "Industry RS rating > 80\n\n"
     industry_message += industry_results
 
     industry_message = urllib.parse.quote(industry_message)
