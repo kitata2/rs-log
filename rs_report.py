@@ -55,7 +55,7 @@ def main():
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
     message += "\n\n"
-    message += str(sorted_industry_sector_list)
+    message = str(sorted_industry_sector_list)
     print("aaa")
     print(message)
     print("aaa")
