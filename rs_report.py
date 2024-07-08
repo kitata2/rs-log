@@ -9,6 +9,8 @@ def main():
     telegram_apikey = sys.argv[1]
     chat_id         = sys.argv[2]
 
+    sector_industry_list = {}
+
     # Read stock RS file
     with open('output/rs_stocks.csv', 'r') as file:
         reader = csv.reader(file)
@@ -22,9 +24,14 @@ def main():
     result_list = []
     for row in filtered_data:
         result_list.append(row[1])
+        if sector_industry_list[row[2]-row[3]]:
+            sector_industry_list[row[2]-row[3]] = 1
+        else:
+            sector_industry_list[row[2]-row[3]] += 1
            
     result_list.sort()
     print(result_list)
+    print(dict(sector_industry_list))
 
     filtered_by_over_10b_list = []
     for x in result_list:
@@ -51,9 +58,6 @@ def main():
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
-    # print(res)
-    # print(res.status)
-
 
     # read Industries RS file
     with open('output/rs_industries.csv', 'r') as file2:
