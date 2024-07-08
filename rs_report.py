@@ -49,13 +49,14 @@ def main():
 
     
     results = ','.join(result_list)
-    message = "Stocks with RS rating > 80 in past months\n\n"
+    message = "Stocks with RS rating > 80 in past months\n"
     # message += results
     message += f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
     message += "\n\n"
     message += str(sorted_industry_sector_list)
+    print("aaa")
     print(message)
     print("aaa")
     message = urllib.parse.quote(message)
