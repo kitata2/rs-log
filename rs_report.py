@@ -62,6 +62,7 @@ def main():
     res = requests.get(url)
 
     message2 = urllib.parse.quote(message2)
+    print(message2)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message2}"
     res = requests.get(url)
 
