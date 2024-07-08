@@ -61,6 +61,7 @@ def main():
 
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80 over 10 billion\n\n"
+    message += f"# of stocks: {len(filtered_by_over_10b_list)}\n\n"
     message += results       
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
@@ -69,7 +70,6 @@ def main():
     message = "Industry-Sectors with most RS rating > 80\n\n"
     res = '\n'.join(str(tup) for tup in sorted_industry_sector_dict)
     message += res
-    
     message = urllib.parse.quote(message)
     print(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
