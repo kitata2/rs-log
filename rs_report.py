@@ -39,10 +39,10 @@ def main():
             pass
     print(filtered_by_over_10b_list)
 
-    print("aaa")
-    results = ','.join(result_list)
-    message = "Stocks with RS rating > 80 in past months\n\n"
-    message += results
+    
+    # results = ','.join(result_list)
+    # message = "Stocks with RS rating > 80 in past months\n\n"
+    # message += results
     message += f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
@@ -51,8 +51,8 @@ def main():
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
-    print(res)
-    print(res.status)
+    # print(res)
+    # print(res.status)
 
 
     # read Industries RS file
