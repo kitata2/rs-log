@@ -50,7 +50,7 @@ def main():
     print(filtered_by_over_10b_list)
     
     sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True) #List of tuples
-    print(dict(sorted_industry_sector_dict))
+    print(sorted_industry_sector_dict)
     
     # results = ','.join(result_list)
     # message = "Stocks RS rating > 80 in past months\n\n"
@@ -68,10 +68,11 @@ def main():
     res = requests.get(url)
     
     message = "Industry-Sectors with most RS rating > 80\n\n"
-    res = '\n'.join(str(tup) for tup in sorted_industry_sector_dict)
+    for entry in sorted_industry_sector_dict[:10]:
+        
+        print(res)
     message += res
     message = urllib.parse.quote(message)
-    print(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
 
