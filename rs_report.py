@@ -24,10 +24,10 @@ def main():
     result_list = []
     for row in filtered_data:
         result_list.append(row[1])
-        if sector_industry_list[row[2]-row[3]]:
-            sector_industry_list[row[2]-row[3]] = 1
+        if sector_industry_list[f"{row[2]}-{row[3]}"]:
+            sector_industry_list[f"{row[2]}-{row[3]}"] = 1
         else:
-            sector_industry_list[row[2]-row[3]] += 1
+            sector_industry_list[f"{row[2]}-{row[3]}"] += 1
            
     result_list.sort()
     print(result_list)
