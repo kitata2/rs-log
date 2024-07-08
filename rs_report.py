@@ -49,16 +49,19 @@ def main():
     results = ','.join(result_list)
     message = "Stocks RS rating > 80 in past months\n\n"
     message += results
-    message += "\n\n"
+    message = urllib.parse.quote(message)
+    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+    res = requests.get(url)
+
+    results = ','.join(filtered_by_over_10b_list)
+    message = "Stocks RS rating > 80 over 10 billion\n\n"
+    message += results       
+    message = urllib.parse.quote(message)
+    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+    res = requests.get(url)
+    
+    message = "Industry-Sectors with most RS rating > 80\n\n"
     message += str(sorted_industry_sector_dict)
-        
-    
-    # message += f"\n\nFiltered over 10 billion:\n\n"
-    # stock_list2 = ', '.join(filtered_by_over_10b_list)
-    # # message += stock_list2
-    # message += "\n\n"
-    # # message2 = str(sorted_industry_sector_dict)
-    
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
