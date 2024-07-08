@@ -68,16 +68,16 @@ def main():
     res = requests.get(url)
     
     message = "Industry-Sectors with most RS rating > 80\n\n"
-    for entry in sorted_industry_sector_dict[:10]:
-        
-        print(res)
-    message += res
+    for tup in sorted_industry_sector_dict[:10]:
+        x ='\n'.join(str(tup)
+        print(x)
+        message += x
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
 
     
-    # read Industries RS file
+    #### read Industries RS file
     with open('output/rs_industries.csv', 'r') as file2:
         reader2 = csv.reader(file2)
         next(reader2)
@@ -90,7 +90,6 @@ def main():
     for row in industry_filtered_data:
         industry_result_list.append(f"{row[1]}-{row[2]} {row[4:7]} {row[8]}") # Sample 1,Copper,Basic Materials,119.33,99,99,97,46,"HBM,TGB,SCCO,ERO,FCX"
            
-    
     print(industry_result_list)
     
     industry_results = '\n\n'.join(industry_result_list)
