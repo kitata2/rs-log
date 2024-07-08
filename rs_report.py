@@ -69,9 +69,8 @@ def main():
     
     message = "Industry-Sectors with most RS rating > 80\n\n"
     for tup in sorted_industry_sector_dict[:10]:
-        x ='\n'.join(str(tup))
-        print(x)
-        message += x
+        message += str(tup)
+        
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
