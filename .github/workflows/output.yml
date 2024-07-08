@@ -30,7 +30,7 @@ jobs:
     
           - name: Commit Changes
             run: |
-              git add rs80_10b.csv
+              git add output/rs80_10b.csv
               git commit -m "Automated commit from GitHub Actions"
     
           - name: Push Changes
