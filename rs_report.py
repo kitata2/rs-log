@@ -39,7 +39,7 @@ def main():
             pass
     print(filtered_by_over_10b_list)
 
-
+    print("aaa")
     results = ','.join(result_list)
     message = "Stocks with RS rating > 80 in past months\n\n"
     message += results
@@ -47,7 +47,7 @@ def main():
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
     print(message)
-
+    print("aaa")
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     requests.get(url)
