@@ -3,6 +3,7 @@ import requests
 import sys
 import urllib.parse
 import yfinance as yf
+import numpy as np
 
 TWO_BILLION = 2000000000
 TEN_BILLION = 10000000000
@@ -48,6 +49,8 @@ def main():
             pass   
     
     print(filtered_by_over_10b_list)
+
+    np.savetxt(f'output/rs80_10b.csv', filtered_by_over_10b_list, delimiter=",", fmt='%s')
     
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80 over 10 billion\n\n"
