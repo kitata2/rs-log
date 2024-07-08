@@ -43,7 +43,7 @@ def main():
     # results = ','.join(result_list)
     # message = "Stocks with RS rating > 80 in past months\n\n"
     # message += results
-    message += f"\n\nFiltered over 10 billion:\n\n"
+    message = f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
     print(message)
