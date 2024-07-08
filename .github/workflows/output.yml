@@ -22,4 +22,20 @@ jobs:
             run: |
               python -m pip install -r requirements.txt
               python rs_report.py "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_CHAT_ID }}"
-
+          
+          - name: Configure Git
+            run: |
+              git config --global user.name "github-actions[bot]"
+              git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    
+          - name: Commit Changes
+            run: |
+              git add rs80_10b.csv
+              git commit -m "Automated commit from GitHub Actions"
+    
+          - name: Push Changes
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            run: |
+              git push origin HEAD:main
+    
