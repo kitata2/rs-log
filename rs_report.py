@@ -55,12 +55,14 @@ def main():
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
     message += "\n\n"
-    # message = f"{str(sorted_industry_sector_list)}"
-    print("aaa")
-    print(message)
-    print("aaa")
+    message2 = str(sorted_industry_sector_list)
+    
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+    res = requests.get(url)
+
+    message2 = urllib.parse.quote(message2)
+    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message2}"
     res = requests.get(url)
 
     # read Industries RS file
