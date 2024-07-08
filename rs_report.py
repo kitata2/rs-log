@@ -9,8 +9,6 @@ def main():
     telegram_apikey = sys.argv[1]
     chat_id         = sys.argv[2]
 
-    sector_industry_list = {}
-
     # Read stock RS file
     with open('output/rs_stocks.csv', 'r') as file:
         reader = csv.reader(file)
@@ -22,6 +20,7 @@ def main():
 
     # Print the filtered rows
     result_list = []
+    industry_sector_list = {}
     for row in filtered_data:
         result_list.append(row[1])
         try:
