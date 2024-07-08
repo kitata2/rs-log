@@ -18,21 +18,20 @@ def main():
     # Filter the rows where the first three columns are all > 80
     filtered_data = [row for row in data if all(float(col) > 80 for col in row[6:9])]
 
-    # Print the filtered rows
     result_list = []
-    industry_sector_list = {}
+    industry_sector_dict = {}
     for row in filtered_data:
         result_list.append(row[1])
         try:
-            industry_sector_list[f"{row[3]}-{row[2]}"]
-            industry_sector_list[f"{row[3]}-{row[2]}"] += 1
+            industry_sector_dict[f"{row[3]}-{row[2]}"]
+            industry_sector_dict[f"{row[3]}-{row[2]}"] += 1
         except KeyError:
-            industry_sector_list[f"{row[3]}-{row[2]}"] = 1            
+            industry_sector_dict[f"{row[3]}-{row[2]}"] = 1            
            
     result_list.sort()
     print(result_list)
-    sorted_industry_sector_list = sorted(industry_sector_list.items(), key=lambda x: x[1], reverse=True)
-    print(dict(sorted_industry_sector_list))
+    sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True)
+    print(dict(sorted_industry_sector_dict))
     
     filtered_by_over_10b_list = []
     for x in result_list:
@@ -46,26 +45,21 @@ def main():
         except:
             pass
     print(filtered_by_over_10b_list)
-
     
     results = ','.join(result_list)
     message = "Stocks with RS rating > 80 in past months\n"
-    # message += results
+    message += results
     message += f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
-    message += stock_list2
+    # message += stock_list2
     message += "\n\n"
-    message2 = str(sorted_industry_sector_list)
+    # message2 = str(sorted_industry_sector_list)
     
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
 
-    message2 = urllib.parse.quote(message2)
-    print(message2)
-    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message2}"
-    res = requests.get(url)
-
+    
     # read Industries RS file
     with open('output/rs_industries.csv', 'r') as file2:
         reader2 = csv.reader(file2)
