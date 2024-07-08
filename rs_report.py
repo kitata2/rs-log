@@ -38,7 +38,7 @@ def main():
     result_list.sort()
     print(result_list)
     sorted_sector_industry_list = sorted(sector_industry_list.items(), key=lambda x: x[1], reverse=True)
-    print(dict(sort_sector_industry_list))
+    print(dict(sorted_sector_industry_list))
 
     filtered_by_over_10b_list = []
     for x in result_list:
