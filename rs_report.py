@@ -49,16 +49,6 @@ def main():
     
     print(filtered_by_over_10b_list)
     
-    sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True) #List of tuples
-    print(sorted_industry_sector_dict)
-    
-    # results = ','.join(result_list)
-    # message = "Stocks RS rating > 80 in past months\n\n"
-    # message += results
-    # message = urllib.parse.quote(message)
-    # url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
-    # res = requests.get(url)
-
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80 over 10 billion\n\n"
     message += f"# of stocks: {len(filtered_by_over_10b_list)}\n\n"
@@ -66,10 +56,14 @@ def main():
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
+
+    sorted_industry_sector_dict = sorted(industry_sector_dict.items(), key=lambda x: x[1], reverse=True) #List of tuples
+    print(sorted_industry_sector_dict)
     
     message = "Top 10 Industry-Sectors of RS stocks\n\n"
-    for tup in sorted_industry_sector_dict[:10]:
-        message += str(tup)        
+    for tup in sorted_industry_sector_dict[:15]:
+        message += str(tup)
+        message += "\n"
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
     res = requests.get(url)
