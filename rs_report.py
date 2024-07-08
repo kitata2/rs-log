@@ -25,21 +25,16 @@ def main():
     for row in filtered_data:
         result_list.append(row[1])
         try:
-            sector_industry_list[f"{row[2]}-{row[3]}"]
-            sector_industry_list[f"{row[2]}-{row[3]}"] += 1
+            industry_sector_list[f"{row[3]}-{row[2]}"]
+            industry_sector_list[f"{row[3]}-{row[2]}"] += 1
         except KeyError:
-            sector_industry_list[f"{row[2]}-{row[3]}"] = 1
-            
-        # if sector_industry_list.get(f"{row[2]}-{row[3]}") is not None:
-        #     sector_industry_list[f"{row[2]}-{row[3]}"] += 1
-        # else:
-        #     sector_industry_list[f"{row[2]}-{row[3]}"] = 1
+            industry_sector_list[f"{row[3]}-{row[2]}"] = 1            
            
     result_list.sort()
     print(result_list)
-    sorted_sector_industry_list = sorted(sector_industry_list.items(), key=lambda x: x[1], reverse=True)
-    print(dict(sorted_sector_industry_list))
-
+    sorted_industry_sector_list = sorted(industry_sector_list.items(), key=lambda x: x[1], reverse=True)
+    print(dict(sorted_industry_sector_list))
+    
     filtered_by_over_10b_list = []
     for x in result_list:
         try:
@@ -60,6 +55,8 @@ def main():
     message += f"\n\nFiltered over 10 billion:\n\n"
     stock_list2 = ', '.join(filtered_by_over_10b_list)
     message += stock_list2
+    message += "\n\n"
+    message += str(sorted_industry_sector_list)
     print(message)
     print("aaa")
     message = urllib.parse.quote(message)
