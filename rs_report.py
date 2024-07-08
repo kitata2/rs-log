@@ -61,7 +61,7 @@ def main():
     res = requests.get(url)
     
     message = "Industry-Sectors with most RS rating > 80\n\n"
-    results = ','.join(sorted_industry_sector_dict)
+    result = ', '.join(f'({x}, {y})' for x, y in sorted_industry_sector_dict)
     message += result
     print(message)
     message = urllib.parse.quote(message)
