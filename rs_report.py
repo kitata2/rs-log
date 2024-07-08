@@ -50,7 +50,9 @@ def main():
     print("aaa")
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
-    requests.get(url)
+    res = requests.get(url)
+    print(res)
+    print(res.status)
 
 
     # read Industries RS file
