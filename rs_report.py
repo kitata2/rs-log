@@ -50,7 +50,7 @@ def main():
     
     print(filtered_by_over_10b_list)
 
-    np.savetxt("output/rs80_10b.csv", filtered_by_over_10b_list, delimiter=",", fmt='%s')
+    np.savetxt("rs80_10b.csv", filtered_by_over_10b_list, delimiter=",", fmt='%s')
     
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80 over 10 billion\n\n"
