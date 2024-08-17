@@ -62,7 +62,7 @@ def main():
     res = requests.get(url)
 
     # send mid-cap list
-    # np.savetxt("rs80_mid_cap.csv", filtered_by_mid_cap_list, delimiter=",", fmt='%s')
+    np.savetxt("rs80_mid_cap.csv", filtered_by_mid_cap_list, delimiter=",", fmt='%s')
     
     results = ','.join(filtered_by_mid_cap_list)
     message = "Stocks RS rating > 80, mid-cap\n\n"
