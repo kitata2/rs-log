@@ -51,10 +51,20 @@ def main():
     print(filtered_by_over_10b_list)
 
     np.savetxt("rs80_10b.csv", filtered_by_over_10b_list, delimiter=",", fmt='%s')
-    
+
+    # send large-cap list
     results = ','.join(filtered_by_over_10b_list)
     message = "Stocks RS rating > 80, market cap over 10 billion\n\n"
     message += f"# of stocks: {len(filtered_by_over_10b_list)}\n\n"
+    message += results       
+    message = urllib.parse.quote(message)
+    url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
+    res = requests.get(url)
+
+    # send mid-cap list
+    results = ','.join(filtered_by_mid_cap_list)
+    message = "Stocks RS rating > 80, mid-cap\n\n"
+    message += f"# of stocks: {len(filtered_by_mid_cap_list)}\n\n"
     message += results       
     message = urllib.parse.quote(message)
     url = f"https://api.telegram.org/{telegram_apikey}/sendMessage?chat_id={chat_id}&text={message}"
