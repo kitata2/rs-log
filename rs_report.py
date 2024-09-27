@@ -30,7 +30,7 @@ def main():
             industry_sector_dict[f"{row[3]}-{row[2]}"] += 1
         except KeyError:
             industry_sector_dict[f"{row[3]}-{row[2]}"] = 1                
-    result_list.sort()
+    # result_list.sort()
 
     
     filtered_by_mid_cap_list = []
@@ -91,7 +91,7 @@ def main():
         data2 = list(reader2)
 
     ### Filter the rows where the first three columns are all > 80
-    industry_filtered_data = [row for row in data2 if all(float(col) >= 90 for col in row[4:7])] # Percentile, 1-month and 3-month top
+    industry_filtered_data = [row for row in data2 if all(float(col) >= 80 for col in row[4:7])] # Percentile, 1-month and 3-month top
 
     industry_result_list = []
     for row in industry_filtered_data:
@@ -100,7 +100,7 @@ def main():
     print(industry_result_list)
     
     industry_results = '\n\n'.join(industry_result_list)
-    industry_message = "Industry RS rating > 80\n\n"
+    industry_message = "Industry IBD RS rating > 90\n\n"
     industry_message += industry_results
 
     industry_message = urllib.parse.quote(industry_message)
